@@ -888,7 +888,141 @@
   }
   .banner-sep { opacity: 0.4; }
 
-  /* ── MOBILE ── */
+  #map {
+    background: var(--dark);
+    padding: 80px 5%;
+  }
+  #map .map-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  #map .map-frame {
+    overflow: hidden;
+    position: relative;
+    height: 450px;
+    border: 1px solid rgba(212,160,23,0.2);
+    box-shadow: 0 0 40px rgba(212,160,23,0.1);
+  }
+  #map .map-details { display: flex; flex-direction: column; gap: 24px; }
+  #map .map-card {
+    background: var(--dark2);
+    border: 1px solid rgba(212,160,23,0.15);
+    padding: 40px;
+  }
+  #map .map-info {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  #map .map-icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    background: rgba(212,160,23,0.1);
+    border: 1px solid rgba(212,160,23,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+  }
+  #map .map-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  #map .map-value {
+    font-size: 0.95rem;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.6;
+  }
+  #map .map-value a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  #map .map-value a:hover { color: var(--gold); }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials {
+    background: var(--dark);
+    padding: 80px 5%;
+  }
+  .testimonials-header {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 64px;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+  }
+  .testimonial-card {
+    background: var(--dark2);
+    border: 1px solid rgba(212,160,23,0.1);
+    padding: 32px;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+  }
+  .testimonial-quote {
+    font-size: 1.1rem;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .testimonial-quote::before {
+    content: '"';
+    font-size: 2rem;
+    color: var(--gold);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .testimonial-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--black);
+    font-weight: 700;
+  }
+  .testimonial-info h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .testimonial-info span {
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
   @media (max-width: 900px) {
     #about { grid-template-columns: 1fr; }
     #why { grid-template-columns: 1fr; }
@@ -899,6 +1033,8 @@
     nav { padding: 0 4%; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
+    #map .map-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 600px) {
@@ -907,6 +1043,8 @@
     .form-row { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; justify-content: center; gap: 24px; }
     .contact-form { padding: 28px 22px; }
+    #map { padding: 70px 6%; }
+    #testimonials { padding: 70px 6%; }
   }
 
   /* ── REVEAL ANIMATION ── */
@@ -1042,7 +1180,7 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="services-header">
-    <p class="section-eyebrow reveal">What We Offer</p>
+    <p class="section-eyebrow">What We Offer</p>
     <h2 class="section-title reveal reveal-delay-1">OUR<br><em>PROGRAMS</em></h2>
   </div>
 
@@ -1365,9 +1503,151 @@
         <textarea class="form-textarea" placeholder="Tell us about your fitness goals..."></textarea>
       </div>
 
-      <button class="btn btn-primary" style="width:100%;justify-content:center;clip-path:none;" onclick="handleFormSubmit()">
+      <button class="btn btn-primary" style="width:100%;justify-content:center;clip-path:none;" onclick="handleFormSubmit(event)">
         <img src="favicon.png" alt="Lion" class="lion-favicon btn-icon"> Send Message
       </button>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE MAP SECTION -->
+<section id="map">
+  <p class="section-eyebrow reveal">VISIT US</p>
+  <h2 class="section-title reveal reveal-delay-1" style="margin-bottom: 60px;">OUR <em>LOCATION</em></h2>
+
+  <div class="map-grid">
+    <div class="map-frame reveal reveal-delay-2">
+      <iframe
+        src="https://maps.google.com/maps?q=Bajrang%20Nagar%20Indore&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="map-details reveal reveal-delay-2">
+      <div class="map-card">
+        <div class="map-info">
+          <div class="map-icon">📍</div>
+          <div>
+            <div class="map-label">Address</div>
+            <div class="map-value">Bajrang Nagar<br>Indore, Madhya Pradesh</div>
+          </div>
+        </div>
+
+        <div class="map-info">
+          <div class="map-icon">📞</div>
+          <div>
+            <div class="map-label">Phone</div>
+            <div class="map-value"><a href="tel:+918770481361">+91 87704 81361</a></div>
+          </div>
+        </div>
+
+        <div class="map-info">
+          <div class="map-icon">✉️</div>
+          <div>
+            <div class="map-label">Email</div>
+            <div class="map-value"><a href="mailto:info@liongym.in">info@liongym.in</a></div>
+          </div>
+        </div>
+
+        <div class="map-info" style="margin-bottom: 0;">
+          <div class="map-icon">🕐</div>
+          <div>
+            <div class="map-label">Hours</div>
+            <div class="map-value">Mon - Fri: 6:00 AM - 10:00 PM<br>Sat - Sun: 8:00 AM - 8:00 PM</div>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://www.google.com/maps/search/Bajrang+Nagar+Indore" target="_blank" class="btn btn-primary" style="width: 100%; justify-content: center;">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- Update navigation to include map link -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelector('.nav-links');
+    if (navLinks) {
+      const joinNowLink = navLinks.querySelector('.nav-cta');
+      if (joinNowLink) {
+        if (!navLinks.querySelector('a[href="#testimonials"]')) {
+          const testimonialsLink = document.createElement('li');
+          testimonialsLink.innerHTML = '<a href="#testimonials">Testimonials</a>';
+          navLinks.insertBefore(testimonialsLink, joinNowLink);
+        }
+        if (!navLinks.querySelector('a[href="#map"]')) {
+          const mapLink = document.createElement('li');
+          mapLink.innerHTML = '<a href="#map">Location</a>';
+          navLinks.insertBefore(mapLink, joinNowLink);
+        }
+      }
+    }
+  });
+</script>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-header">
+    <p class="section-eyebrow reveal">Success Stories</p>
+    <h2 class="section-title reveal reveal-delay-1">WHAT OUR <em>MEMBERS</em> SAY</h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-quote">
+        Lion Gym transformed my life completely. The trainers are incredible, and the facilities are top-notch. I've lost 25kg and gained confidence I never thought possible.
+      </div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">R</div>
+        <div class="testimonial-info">
+          <h4>Rahul Sharma</h4>
+          <span>Member since 2023</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-quote">
+        The personal training sessions are game-changers. My trainer pushed me beyond my limits safely, and the results speak for themselves. Highly recommend!
+      </div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">P</div>
+        <div class="testimonial-info">
+          <h4>Priya Patel</h4>
+          <span>Personal Training Client</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="testimonial-quote">
+        From a beginner to competing in my first bodybuilding show - Lion Gym made it possible. The community here is motivating and supportive.
+      </div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">A</div>
+        <div class="testimonial-info">
+          <h4>Amit Kumar</h4>
+          <span>Competition Prep</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-3">
+      <div class="testimonial-quote">
+        The yoga and martial arts classes are amazing. I've never felt more balanced and strong. Lion Gym is my second home now.
+      </div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">S</div>
+        <div class="testimonial-info">
+          <h4>Sneha Jain</h4>
+          <span>Yoga & Martial Arts</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1387,6 +1667,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#trainers">Trainers</a></li>
         <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
@@ -1442,11 +1723,16 @@
   });
 
   // Form submit
-  function handleFormSubmit() {
-    const btn = event.target;
-    btn.textContent = '✅ Message Sent!';
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    const btn = event.currentTarget || event.target.closest('button');
+    if (!btn) return;
+    btn.innerHTML = '✅ Message Sent!';
     btn.style.background = '#2ecc71';
-    setTimeout(() => { btn.textContent = '🦁 Send Message'; btn.style.background = ''; }, 3000);
+    setTimeout(() => {
+      btn.innerHTML = '<img src="favicon.png" alt="Lion" class="lion-favicon btn-icon"> Send Message';
+      btn.style.background = '';
+    }, 3000);
   }
 </script>
 
